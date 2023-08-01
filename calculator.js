@@ -3,19 +3,17 @@ function createCalculator() {
     display: document.querySelector(".display"),
 
     start() {
-      this.clickButtons();
       this.clickEnter();
+      this.clickButtons();
     },
 
     clickEnter() {
-      this.display.addEventListener("keyup", (e) => {
-        if (e.keyCode === 13) {
+      document.addEventListener("keyup", (e) => {
+        if (e.key === "Enter") {
           this.result();
         }
       });
     },
-
-  
 
     clearDisplay() {
       this.display.value = "";
@@ -26,9 +24,8 @@ function createCalculator() {
     },
 
     clickButtons() {
-      document.addEventListener("click", (e) => {
+      document.addEventListener("mouseup", (e) => {
         const el = e.target;
-
         if (el.classList.contains("btn-num")) {
           this.btnNum(el.innerText);
         }
@@ -45,7 +42,7 @@ function createCalculator() {
     },
 
     result() {
-     let count = this.display.value;
+      let count = this.display.value;
       try {
         count = eval(count);
         if (!count) {
